@@ -16,6 +16,7 @@ const stytch = createStytchB2BUIClient(
 
 const AppRoot: React.FC = ({children}: React.PropsWithChildren<{}>) => {
   console.log(useStytchMemberSession());
+  console.log('rendering ok!')
   return <>{children}</>
 }
 
