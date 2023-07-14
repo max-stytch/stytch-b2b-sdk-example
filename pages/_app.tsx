@@ -1,6 +1,6 @@
 import "../styles/stytch.css";
-import type { AppProps } from "next/app";
-import { StytchB2BProvider, createStytchB2BUIClient } from "@stytch/nextjs/b2b";
+import type {AppProps} from "next/app";
+import {StytchB2BProvider, createStytchB2BUIClient, useStytchMemberSession} from "@stytch/nextjs/b2b";
 import React from "react";
 import Head from "next/head";
 
@@ -14,7 +14,18 @@ const stytch = createStytchB2BUIClient(
   }
 );
 
-function MyApp({ Component, pageProps }: AppProps) {
+const AppRoot: React.FC = ({children}: React.PropsWithChildren<{}>) => {
+  console.log(useStytchMemberSession());
+  return <>{children}</>
+}
+
+function MyApp({Component, pageProps}: AppProps) {
+  const appRootChildren = (
+    <div className="container">
+      <Component {...pageProps} />
+    </div>
+  );
+
   return (
     <>
       <Head>
@@ -23,18 +34,19 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="An example Next.js B2B application using Stytch for authentication"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="icon" href="/favicon.svg"/>
       </Head>
 
       <StytchB2BProvider stytch={stytch}>
         <main>
-          <div className="container">
-            <Component {...pageProps} />
-          </div>
+          <AppRoot>
+            {appRootChildren}
+          </AppRoot>
         </main>
       </StytchB2BProvider>
     </>
   );
 }
+
 export default MyApp;

@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import {useStytchMemberSession} from "@stytch/nextjs/b2b";
 
 const App = () => {
+  console.log(useStytchMemberSession());
   return (
     <div className="card">
       <h1>Stytch B2B example app</h1>

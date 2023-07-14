@@ -37,6 +37,7 @@ class MyDocument extends Document {
               target="_blank"
               href="https://github.com/stytchauth/stytch-b2b-nextjs-example"
             >
+              <span>
               <Image
                 alt="Github"
                 src="/github.svg"
@@ -45,6 +46,7 @@ class MyDocument extends Document {
                 style={{ marginRight: "4px" }}
               />
               View on Github
+              </span>
             </Link>
           </div>
         </header>
